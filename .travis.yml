@@ -3,23 +3,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t ptrang/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t phantrang/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ptrang/react-test npm test
+  - docker run -e CI=true phantrang/react-test npm test
 
 after_success:
-  - docker build -t ptrang/multi-client ./client
-  - docker build -t ptrang/multi-nginx ./nginx
-  - docker build -t ptrang/multi-server ./server
-  - docker build -t ptrang/multi-worker ./worker
+  - docker build -t phantrang/multi-client ./client
+  - docker build -t phantrang/multi-nginx ./nginx
+  - docker build -t phantrang/multi-server ./server
+  - docker build -t phantrang/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ptrang/multi-client
-  - docker push ptrang/multi-nginx
-  - docker push ptrang/multi-server
-  - docker push ptrang/multi-worker
+  - docker push phantrang/multi-client
+  - docker push phantrang/multi-nginx
+  - docker push phantrang/multi-server
+  - docker push phantrang/multi-worker
 
 deploy:
   provider: elasticbeanstalk
