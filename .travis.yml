@@ -21,15 +21,15 @@ after_success:
   - docker push phantrang/multi-server
   - docker push phantrang/multi-worker
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: us-west-1
-#   app: multi-docker
-#   env: MultiDocker-env
-#   bucket_name: elasticbeanstalk-us-east-2-278603739114
-#   bucket_path: docker-multi
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key:
-#     secure: $AWS_SECRET_KEY
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: multi-docker-bs
+  env: MultiDockerBs-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-278603739114
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
